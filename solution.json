@@ -1,0 +1,31 @@
+{
+    "type": "solution",
+    "version": 2,
+    "name": "ping3",
+    "projects": [
+        {
+            "name": "ping3",
+            "type": "executable",
+            "profile": "./dsbs-config/profile/gnu/g++.profile.json",
+            "bin-dir": "./bin/linux/",
+            "sources": [
+                {
+                    "src-dir": "./src/ping3/",
+                    "obj-dir": "./obj/ping3/linux/"
+                }
+            ],
+            "include-dirs": [
+                "./include/"
+            ],
+            "lib-dirs": [
+                "./lib/linux/"
+            ],
+            "libs": [],
+            "compiler-options": [
+                "-std=c++17"
+            ],
+            "archiver-options": [],
+            "linker-options": []
+        }
+    ]
+}
