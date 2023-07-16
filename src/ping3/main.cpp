@@ -1,7 +1,14 @@
-#include <iostream>
+#include <ping3/game.hpp>
 
 
 int main(int argc, char** argv) {
-    std::cout << "Hello, World" << "\n";
+    app::Config config;
+
+    game::setup(&config);
+
+    app::init(&config);
+    app::update();
+    app::release();
+    
     return 0;
 }

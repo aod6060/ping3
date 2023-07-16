@@ -20,7 +20,14 @@
             "lib-dirs": [
                 "./lib/linux/"
             ],
-            "libs": [],
+            "libs": [
+                "SDL2",
+                "SDL2_image",
+                "SDL2_ttf",
+                "SDL2_mixer",
+                "GL",
+                "GLEW"
+            ],
             "compiler-options": [
                 "-std=c++17"
             ],
