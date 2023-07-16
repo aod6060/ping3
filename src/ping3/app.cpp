@@ -30,6 +30,7 @@ namespace app {
         _context = SDL_GL_CreateContext(_window);
         glewInit();
 
+        input::init();
 
         if(_conf->initCB) {
             _conf->initCB();
@@ -54,12 +55,16 @@ namespace app {
                 if(e.type == SDL_QUIT) {
                     _running = false;
                 }
+
+                input::handleEvent(&e);
             }
 
             if(_conf->updateCB) {
                 _conf->updateCB(delta);
             }
 
+            input::update();
+            
             if(_conf->renderCB) {
                 _conf->renderCB();
             }
@@ -72,6 +77,9 @@ namespace app {
         if(_conf->releaseCB) {
             _conf->releaseCB();
         }
+
+        input::release();
+
         SDL_GL_DeleteContext(_context);
         SDL_DestroyWindow(_window);
         SDL_Quit();

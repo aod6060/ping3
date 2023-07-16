@@ -4,12 +4,13 @@
 
 namespace game {
 
+    int i = 0;
+
     void init() {
 
     }
 
     void update(float delta) {
-
     }
 
     void render() {
