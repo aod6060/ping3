@@ -11,6 +11,7 @@ namespace game {
     }
 
     void update(float delta) {
+        
     }
 
     void render() {
