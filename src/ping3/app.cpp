@@ -31,6 +31,7 @@ namespace app {
         glewInit();
 
         input::init();
+        sound::init();
 
         if(_conf->initCB) {
             _conf->initCB();
@@ -63,8 +64,10 @@ namespace app {
                 _conf->updateCB(delta);
             }
 
-            input::update();
+           input::update();
             
+            //sound::update();
+
             if(_conf->renderCB) {
                 _conf->renderCB();
             }
@@ -78,6 +81,7 @@ namespace app {
             _conf->releaseCB();
         }
 
+        sound::release();
         input::release();
 
         SDL_GL_DeleteContext(_context);

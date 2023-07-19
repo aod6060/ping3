@@ -48,7 +48,6 @@ namespace app {
     
 }
 
-
 namespace input {
     enum InputState {
         IS_RELEASED = 0,
@@ -337,7 +336,31 @@ namespace input {
     bool isGrab();
     void setGrab(bool b);
     void toggleGrab();
-    
+
+}
+
+namespace sound {
+
+    struct SoundFX {
+        Mix_Chunk* wave;
+    };
+
+    struct Music {
+        Mix_Music* music;
+    };
+
+    void init();
+    void update();
+    void release();
+
+    void initSoundFX(SoundFX& sfx, std::string path);
+    void playSoundFX(SoundFX& sfx);
+    void releaseSoundFX(SoundFX& sfx);
+
+    void initMusic(Music& music, std::string path);
+    void playMusic(Music& music);
+    void stopMusic();
+    void releaseMusic(Music& music);
 }
 
 #endif
