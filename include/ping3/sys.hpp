@@ -363,4 +363,36 @@ namespace sound {
     void releaseMusic(Music& music);
 }
 
+namespace collision {
+    struct Box {
+        glm::vec2 position;
+        glm::vec2 size;
+    };
+
+    enum CollisionCheckType {
+        CCT_LEFT_TOP = 0,
+        CCT_CENTER
+    };
+
+    void box_init(Box& b, const glm::vec2& p, const glm::vec2& s);
+
+    // Left Top Midpoint
+    float box_left_lt(Box& b);
+    float box_right_lt(Box& b);
+    float box_top_lt(Box& b);
+    float box_bottom_lt(Box& b);
+
+    bool box_collision_lt(Box& a, Box& b);
+
+    // Center Midpoint
+    float box_left_center(Box& b);
+    float box_right_center(Box& b);
+    float box_top_center(Box& b);
+    float box_bottom_center(Box& b);
+
+    bool box_collision_center(Box& a, Box& b);
+
+    bool box_collision(CollisionCheckType checkType, Box& a, Box& b);
+}
+
 #endif

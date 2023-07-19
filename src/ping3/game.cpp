@@ -4,28 +4,10 @@
 
 namespace game {
 
-    int i = 0;
-    sound::SoundFX testSFX;
-    sound::Music testMUS;
-
     void init() {
-        sound::initSoundFX(testSFX, "./data/sound/test.wav");
-        sound::initMusic(testMUS, "./data/sound/test_mus.mp3");
     }
 
     void update(float delta) {
-
-        if(input::isKeyPressOnce(input::Keyboard::KEYS_LEFT)) {
-            sound::playSoundFX(testSFX);
-        }
-
-        if(input::isKeyPressOnce(input::Keyboard::KEYS_RIGHT)) {
-            sound::playMusic(testMUS);
-        }
-
-        if(input::isKeyPressOnce(input::Keyboard::KEYS_UP)) {
-            sound::stopMusic();
-        }
     }
 
     void render() {
@@ -33,8 +15,6 @@ namespace game {
     }
 
     void release() {
-        sound::releaseMusic(testMUS);
-        sound::releaseSoundFX(testSFX);
     }
 
     void setup(app::Config* conf) {
