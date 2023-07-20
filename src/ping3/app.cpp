@@ -30,6 +30,7 @@ namespace app {
         _context = SDL_GL_CreateContext(_window);
         glewInit();
 
+        logger::init();
         input::init();
         sound::init();
         render::init();
@@ -85,7 +86,8 @@ namespace app {
         render::release();
         sound::release();
         input::release();
-
+        logger::release();
+        
         SDL_GL_DeleteContext(_context);
         SDL_DestroyWindow(_window);
         SDL_Quit();

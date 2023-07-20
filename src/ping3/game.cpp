@@ -5,6 +5,7 @@
 namespace game {
 
     void init() {
+        
     }
 
     void update(float delta) {

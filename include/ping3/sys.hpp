@@ -49,6 +49,19 @@ namespace app {
 
 namespace logger {
 
+    enum LoggerType {
+        LT_INFO = 0,
+        LT_WARNING,
+        LT_ERROR
+    };
+
+    void init();
+    void release();
+
+    void output(LoggerType type, std::function<void(std::stringstream&)> cb);
+
+    std::string loggerTypeString(const LoggerType& type);
+    
 }
 
 namespace input {
