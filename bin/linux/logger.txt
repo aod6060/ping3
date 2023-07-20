@@ -1,3 +1,0 @@
-[info] -> Hello, World
-[warning] -> Hello, World
-[error] -> Hello, World
