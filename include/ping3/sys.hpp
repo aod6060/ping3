@@ -25,7 +25,6 @@
 #include <glm/ext.hpp>
 
 
-
 namespace app {
     struct Config {
         std::string caption;
@@ -46,6 +45,10 @@ namespace app {
     uint32_t getHeight();
     void exit();
     
+}
+
+namespace logger {
+
 }
 
 namespace input {
@@ -393,6 +396,26 @@ namespace collision {
     bool box_collision_center(Box& a, Box& b);
 
     bool box_collision(CollisionCheckType checkType, Box& a, Box& b);
+}
+
+namespace render {
+
+    void init();
+    void release();
+
+    void clear(glm::vec4 clearColor);
+    void beginFrame();
+    void endFrame();
+
+    void setProjection(const glm::mat4& m);
+    void setView(const glm::mat4& m);
+    void setModel(const glm::mat4& m);
+
+    void render();
+}
+
+namespace util {
+    void loadFile(std::string path, std::function<void(std::string)> cb);
 }
 
 #endif

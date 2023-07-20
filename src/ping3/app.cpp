@@ -32,6 +32,7 @@ namespace app {
 
         input::init();
         sound::init();
+        render::init();
 
         if(_conf->initCB) {
             _conf->initCB();
@@ -81,6 +82,7 @@ namespace app {
             _conf->releaseCB();
         }
 
+        render::release();
         sound::release();
         input::release();
 
