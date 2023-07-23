@@ -49,9 +49,10 @@ namespace app {
     
 }
 
-
 namespace logger {
 
+
+    
     enum LoggerType {
         LT_INFO = 0,
         LT_WARNING,
@@ -437,6 +438,42 @@ namespace render {
     void setModel(const glm::mat4& m);
 
     void render();
+}
+
+namespace config {
+
+
+    struct App {
+        uint32_t width;
+        uint32_t height;
+        bool fullscreen;
+    };
+
+    struct Input {
+        std::map<std::string, input::InputMapping> inputMaps;
+    };
+    
+    struct Render {
+
+    };
+
+    struct Sound {
+        float musicVolume;
+        float soundFXVolume;
+    };
+
+    struct Config {
+        App app;
+        Input input;
+        Render render;
+        Sound sound;
+    };
+
+    void init();
+    void release();
+
+    Config* getConfig();
+
 }
 
 namespace util {
