@@ -4,6 +4,28 @@
     "name": "ping3",
     "projects": [
         {
+            "name": "libgcore",
+            "type": "static",
+            "profile": "./dsbs-config/profile/gnu/g++.profile.json",
+            "bin-dir": "./bin/linux/",
+            "sources": [
+                {
+                    "src-dir": "./src/libgcore/",
+                    "obj-dir": "./obj/libgcore/linux/"
+                }
+            ],
+            "include-dirs": [
+                "./include/"
+            ],
+            "lib-dirs": [],
+            "libs": [],
+            "compiler-options": [
+                "-std=c++17"
+            ],
+            "archiver-options": [],
+            "linker-options": []
+        },
+        {
             "name": "ping3",
             "type": "executable",
             "profile": "./dsbs-config/profile/gnu/g++.profile.json",
@@ -18,9 +40,11 @@
                 "./include/"
             ],
             "lib-dirs": [
-                "./lib/linux/"
+                "./lib/linux/",
+                "./bin/linux/"
             ],
             "libs": [
+                "gcore",
                 "SDL2",
                 "SDL2_image",
                 "SDL2_ttf",

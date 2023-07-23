@@ -14,6 +14,10 @@ namespace game {
     void init() {
     }
 
+    void handleEvent(SDL_Event* e) {
+
+    }
+
     void update(float delta) {
 	if(input::isKeyPress(input::Keyboard::KEYS_LEFT)) {
 		x -= speed * delta;
@@ -52,6 +56,7 @@ namespace game {
         conf->width = 640;
         conf->height = 480;
         conf->initCB = init;
+        conf->handleEventCB = handleEvent;
         conf->updateCB = update;
         conf->renderCB = render;
         conf->releaseCB = release;

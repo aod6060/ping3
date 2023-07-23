@@ -1,4 +1,4 @@
-#include <ping3/sys.hpp>
+#include <gcore/sys.hpp>
 
 
 namespace app {
@@ -60,6 +60,10 @@ namespace app {
                 }
 
                 input::handleEvent(&e);
+
+                if(_conf->handleEventCB) {
+                    _conf->handleEventCB(&e);
+                }
             }
 
             if(_conf->updateCB) {
