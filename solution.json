@@ -50,7 +50,8 @@
                 "SDL2_ttf",
                 "SDL2_mixer",
                 "GL",
-                "GLEW"
+                "GLEW",
+                "jsoncpp"
             ],
             "compiler-options": [
                 "-std=c++17"

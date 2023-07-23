@@ -24,6 +24,7 @@
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 
+#include <json/json.h>
 
 namespace app {
     struct Config {
