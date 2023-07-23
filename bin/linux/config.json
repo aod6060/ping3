@@ -12,22 +12,22 @@
                 "input": "KEYS_ESCAPE"
             },
             {
-                "name": "player-1-move-up",
+                "name": "left",
                 "is-mouse": false,
-                "input": "KEYS_W"
+                "input": "KEYS_LEFT"
             },
             {
-                "name": "player-1-move-down",
+                "name": "right",
                 "is-mouse": false,
-                "input": "KEYS_S"
+                "input": "KEYS_RIGHT"
             },
             {
-                "name": "player-2-move-up",
+                "name": "up",
                 "is-mouse": false,
                 "input": "KEYS_UP"
             },
             {
-                "name": "player-2-move-down",
+                "name": "down",
                 "is-mouse": false,
                 "input": "KEYS_DOWN"
             }

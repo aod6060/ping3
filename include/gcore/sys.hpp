@@ -478,6 +478,9 @@ namespace config {
 
 namespace util {
     void loadFile(std::string path, std::function<void(std::string)> cb);
+
+    void loadStream(std::string path, std::function<void(std::ifstream& in)> cb);
+    void writeStream(std::string path, std::function<void(std::ofstream& out)> cb);
 }
 
 #endif

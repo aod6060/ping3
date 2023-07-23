@@ -6,7 +6,9 @@ namespace config {
 
     static Config g_config;
 
+
     void init() {
+        
     }
 
     void release() {
