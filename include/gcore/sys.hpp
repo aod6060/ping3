@@ -49,6 +49,7 @@ namespace app {
     
 }
 
+
 namespace logger {
 
     enum LoggerType {
@@ -333,6 +334,11 @@ namespace input {
         MBS_MAX_SIZE
     };
 
+    struct InputMapping {
+        int input;
+        bool isMouse;
+    };
+
     void init();
     void handleEvent(SDL_Event* e);
     void update();
@@ -355,6 +361,10 @@ namespace input {
     void setGrab(bool b);
     void toggleGrab();
 
+    bool isInputMappingRelease(InputMapping& im);
+    bool isInputMappingPressOnce(InputMapping& im);
+    bool isInputMappingPress(InputMapping& im);
+    bool isInputMappingReleaseOnce(InputMapping& im);
 }
 
 namespace sound {

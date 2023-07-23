@@ -11,7 +11,27 @@ namespace game {
 
     static float speed = 64.0f;
 
+    input::InputMapping escapeInput;
+    input::InputMapping leftInput;
+    input::InputMapping rightInput;
+    input::InputMapping upInput;
+    input::InputMapping downInput;
+
     void init() {
+        escapeInput.input = input::Keyboard::KEYS_ESCAPE;
+        escapeInput.isMouse = false;
+
+        leftInput.input = input::Keyboard::KEYS_LEFT;
+        leftInput.isMouse = false;
+
+        rightInput.input = input::Keyboard::KEYS_RIGHT;
+        rightInput.isMouse = false;
+
+        upInput.input = input::Keyboard::KEYS_UP;
+        upInput.isMouse = false;
+
+        downInput.input = input::Keyboard::KEYS_DOWN;
+        downInput.isMouse = false;
     }
 
     void handleEvent(SDL_Event* e) {
@@ -19,31 +39,35 @@ namespace game {
     }
 
     void update(float delta) {
-	if(input::isKeyPress(input::Keyboard::KEYS_LEFT)) {
-		x -= speed * delta;
-	} else if(input::isKeyPress(input::Keyboard::KEYS_RIGHT)) {
-		x += speed * delta;
-	}
+        if(input::isInputMappingPressOnce(escapeInput)) {
+            app::exit();
+        }
 
-	if(input::isKeyPress(input::Keyboard::KEYS_UP)) {
-		y -= speed * delta;
-	} else if(input::isKeyPress(input::Keyboard::KEYS_DOWN)) {
-		y += speed * delta;
-	}
+        if(input::isInputMappingPress(leftInput)) {
+            x -= speed * delta;
+        } else if(input::isInputMappingPress(rightInput)) {
+            x += speed * delta;
+        }
+
+        if(input::isInputMappingPress(upInput)) {
+            y -= speed * delta;
+        } else if(input::isInputMappingPress(downInput)) {
+            y += speed * delta;
+        }
     }
 
     void render() {
         render::clear(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
         render::beginFrame();
 	
-	render::setProjection(glm::ortho(0.0f, (float)app::getWidth(), (float)app::getHeight(), 0.0f));
-	render::setView(glm::mat4(1.0f));
-	render::setModel(
-		glm::translate(glm::mat4(1.0f), glm::vec3(x, y, 0.0f)) *
-		glm::scale(glm::mat4(1.0f), glm::vec3(32.0f, 48.0f, 0.0f))		
-	);
+        render::setProjection(glm::ortho(0.0f, (float)app::getWidth(), (float)app::getHeight(), 0.0f));
+        render::setView(glm::mat4(1.0f));
+        render::setModel(
+            glm::translate(glm::mat4(1.0f), glm::vec3(x, y, 0.0f)) *
+            glm::scale(glm::mat4(1.0f), glm::vec3(32.0f, 48.0f, 0.0f))		
+        );
 
-	render::render();
+	    render::render();
 	
         render::endFrame();
     }

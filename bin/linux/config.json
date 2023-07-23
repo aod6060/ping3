@@ -1,0 +1,41 @@
+{
+    "app": {
+        "width": 640,
+        "height": 480,
+        "fullscreen": false
+    },
+    "input": {
+        "input-maps": [
+            {
+                "name": "escape",
+                "is-mouse": false,
+                "input": "KEYS_ESCAPE"
+            },
+            {
+                "name": "player-1-move-up",
+                "is-mouse": false,
+                "input": "KEYS_W"
+            },
+            {
+                "name": "player-1-move-down",
+                "is-mouse": false,
+                "input": "KEYS_S"
+            },
+            {
+                "name": "player-2-move-up",
+                "is-mouse": false,
+                "input": "KEYS_UP"
+            },
+            {
+                "name": "player-2-move-down",
+                "is-mouse": false,
+                "input": "KEYS_DOWN"
+            }
+        ]
+    },
+    "render": {},
+    "sound": {
+        "music-volume": 1.0,
+        "sound-fx-volume": 1.0
+    }
+}

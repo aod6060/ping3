@@ -129,4 +129,21 @@ namespace input {
     }
 
     
+    bool isInputMappingRelease(InputMapping& im) {
+        return (im.isMouse) ? isMouseButtonRelease((MouseButtons)im.input) : isKeyRelease((Keyboard)im.input);
+    }
+
+    bool isInputMappingPressOnce(InputMapping& im) {
+        return (im.isMouse) ? isMouseButtonPressOnce((MouseButtons)im.input) : isKeyPressOnce((Keyboard)im.input);
+    }
+
+    bool isInputMappingPress(InputMapping& im) {
+        return (im.isMouse) ? isMouseButtonPress((MouseButtons)im.input) : isKeyPress((Keyboard)im.input);
+    }
+
+    bool isInputMappingReleaseOnce(InputMapping& im) {
+        return (im.isMouse) ? isMouseButtonReleaseOnce((MouseButtons)im.input) : isKeyReleaseOnce((Keyboard)im.input);
+    }
+
+
 }
