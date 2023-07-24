@@ -17,6 +17,8 @@ namespace game {
     input::InputMapping upInput;
     input::InputMapping downInput;
 
+    sound::SoundFX test;
+
     void init() {
         escapeInput.input = input::Keyboard::KEYS_ESCAPE;
         escapeInput.isMouse = false;
@@ -32,6 +34,9 @@ namespace game {
 
         downInput.input = input::Keyboard::KEYS_DOWN;
         downInput.isMouse = false;
+
+
+        sound::initSoundFX(test, "./data/sound/test.wav");
     }
 
     void handleEvent(SDL_Event* e) {
@@ -40,6 +45,7 @@ namespace game {
 
     void update(float delta) {
         if(input::isInputMappingPressOnce(escapeInput)) {
+            //sound::playSoundFX(test);
             app::exit();
         }
 
@@ -73,6 +79,7 @@ namespace game {
     }
 
     void release() {
+        sound::releaseSoundFX(test);
     }
 
     void setup(app::Config* conf) {
