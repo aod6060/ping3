@@ -444,6 +444,7 @@ namespace config {
 
 
     struct App {
+        std::string caption;
         uint32_t width;
         uint32_t height;
         bool fullscreen;
@@ -453,9 +454,7 @@ namespace config {
         std::map<std::string, input::InputMapping> inputMaps;
     };
     
-    struct Render {
-
-    };
+    struct Render {};
 
     struct Sound {
         float musicVolume;

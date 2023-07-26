@@ -13,6 +13,8 @@ namespace app {
     void init(Config* conf) {
         _conf = conf;
 
+        config::init();
+
         SDL_Init(SDL_INIT_EVERYTHING);
 
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
@@ -95,6 +97,8 @@ namespace app {
         SDL_GL_DeleteContext(_context);
         SDL_DestroyWindow(_window);
         SDL_Quit();
+
+        config::release();
     }
     
     uint32_t getWidth() {

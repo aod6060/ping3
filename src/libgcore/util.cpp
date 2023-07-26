@@ -14,7 +14,7 @@ namespace util {
     }
 
     void loadStream(std::string path, std::function<void(std::ifstream& in)> cb) {
-        std::ifstream in(path, std::ios::binary);
+        std::ifstream in(path);
         if(in.is_open()) {
             cb(in);
             in.close();
@@ -22,7 +22,7 @@ namespace util {
     }
 
     void writeStream(std::string path, std::function<void(std::ofstream& out)> cb) {
-        std::ofstream out(path, std::ios::binary);
+        std::ofstream out(path);
         if(out.is_open()) {
             cb(out);
             out.close();

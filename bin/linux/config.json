@@ -1,5 +1,8 @@
 {
+    "type": "config",
+    "version": 1,
     "app": {
+        "caption": "ping3",
         "width": 640,
         "height": 480,
         "fullscreen": false
