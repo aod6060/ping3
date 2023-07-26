@@ -4,21 +4,52 @@
 
 namespace state {
 
-    void addState(std::string name, State* state) {}
+    static std::map<std::string, State*> states;
+    static std::string currentName;
 
-    void changeState(std::string name) {}
+    void addState(std::string name, State* state) {
+        states[name] = state;
+    }
 
-    void initialState(std::string name) {}
+    void changeState(std::string name) {
+        release();
+        currentName = name;
+        init();
+    }
+
+    void initialState(std::string name) {
+        currentName = name;
+    }
     
-    void init() {}
+    void init() {
+        if(states[currentName]->initCB) {
+            states[currentName]->initCB();
+        }
+    }
 
-    void handleEvent(SDL_Event* e) {}
+    void handleEvent(SDL_Event* e) {
+        if(states[currentName]->handleEventCB) {
+            states[currentName]->handleEventCB(e);
+        }
+    }
 
-    void update(float delta) {}
+    void update(float delta) {
+        if(states[currentName]->updateCB) {
+            states[currentName]->updateCB(delta);
+        }
+    }
 
-    void render() {}
+    void render() {
+        if(states[currentName]->renderCB) {
+            states[currentName]->renderCB();
+        }
+    }
 
-    void release() {}
+    void release() {
+        if(states[currentName]->releaseCB) {
+            states[currentName]->releaseCB();
+        }
+    }
 
 
 }
