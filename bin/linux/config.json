@@ -2,7 +2,7 @@
     "type": "config",
     "version": 1,
     "app": {
-        "caption": "ping3",
+        "caption": "Ping3: Balls of Fire",
         "width": 640,
         "height": 480,
         "fullscreen": false

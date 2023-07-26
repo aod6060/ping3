@@ -28,10 +28,11 @@
 
 namespace app {
     struct Config {
-        std::string caption;
-        uint32_t width;
-        uint32_t height;
-
+        /*
+            std::string caption;
+            uint32_t width;
+            uint32_t height;
+        */
         std::function<void()> initCB;
         std::function<void(SDL_Event*)> handleEventCB;
         std::function<void(float)> updateCB;

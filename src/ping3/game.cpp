@@ -10,32 +10,10 @@ namespace game {
     static float y = 32.0f;
 
     static float speed = 64.0f;
-
-    input::InputMapping escapeInput;
-    input::InputMapping leftInput;
-    input::InputMapping rightInput;
-    input::InputMapping upInput;
-    input::InputMapping downInput;
-
+    
     sound::SoundFX test;
 
     void init() {
-        escapeInput.input = input::Keyboard::KEYS_ESCAPE;
-        escapeInput.isMouse = false;
-
-        leftInput.input = input::Keyboard::KEYS_LEFT;
-        leftInput.isMouse = false;
-
-        rightInput.input = input::Keyboard::KEYS_RIGHT;
-        rightInput.isMouse = false;
-
-        upInput.input = input::Keyboard::KEYS_UP;
-        upInput.isMouse = false;
-
-        downInput.input = input::Keyboard::KEYS_DOWN;
-        downInput.isMouse = false;
-
-
         sound::initSoundFX(test, "./data/sound/test.wav");
     }
 
@@ -44,20 +22,20 @@ namespace game {
     }
 
     void update(float delta) {
-        if(input::isInputMappingPressOnce(escapeInput)) {
+        if(input::isInputMappingPressOnce(config::getConfig()->input.inputMaps["escape"])) {
             //sound::playSoundFX(test);
             app::exit();
         }
 
-        if(input::isInputMappingPress(leftInput)) {
+        if(input::isInputMappingPress(config::getConfig()->input.inputMaps["left"])) {
             x -= speed * delta;
-        } else if(input::isInputMappingPress(rightInput)) {
+        } else if(input::isInputMappingPress(config::getConfig()->input.inputMaps["right"])) {
             x += speed * delta;
         }
 
-        if(input::isInputMappingPress(upInput)) {
+        if(input::isInputMappingPress(config::getConfig()->input.inputMaps["up"])) {
             y -= speed * delta;
-        } else if(input::isInputMappingPress(downInput)) {
+        } else if(input::isInputMappingPress(config::getConfig()->input.inputMaps["down"])) {
             y += speed * delta;
         }
     }
@@ -83,9 +61,6 @@ namespace game {
     }
 
     void setup(app::Config* conf) {
-        conf->caption = "Ping3";
-        conf->width = 640;
-        conf->height = 480;
         conf->initCB = init;
         conf->handleEventCB = handleEvent;
         conf->updateCB = update;

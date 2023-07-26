@@ -20,13 +20,19 @@ namespace app {
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
 
+        int windowFlag = SDL_WINDOW_OPENGL;
+
+        if(config::getConfig()->app.fullscreen) {
+            windowFlag |= SDL_WINDOW_FULLSCREEN;
+        }
+
         _window = SDL_CreateWindow(
-            _conf->caption.c_str(),
+            config::getConfig()->app.caption.c_str(),
             SDL_WINDOWPOS_UNDEFINED,
             SDL_WINDOWPOS_UNDEFINED,
-            _conf->width,
-            _conf->height,
-            SDL_WINDOW_OPENGL
+            config::getConfig()->app.width,
+            config::getConfig()->app.height,
+            windowFlag
         );
 
         _context = SDL_GL_CreateContext(_window);
@@ -102,11 +108,11 @@ namespace app {
     }
     
     uint32_t getWidth() {
-        return _conf->width;
+        return config::getConfig()->app.width;
     }
 
     uint32_t getHeight() {
-        return _conf->height;
+        return config::getConfig()->app.height;
     }
 
     void exit() {
