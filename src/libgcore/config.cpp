@@ -275,7 +275,7 @@ namespace config {
         mouseButtons["MBS_CENTER"] = input::MouseButtons::MBS_CENTER;
         mouseButtons["MBS_RIGHT"] = input::MouseButtons::MBS_RIGHT;
 
-        util::loadStream("./config.json", [&](std::ifstream& in) {
+        util::loadStream("./data/config.json", [&](std::ifstream& in) {
             Json::Value root;
             in >> root;
 
