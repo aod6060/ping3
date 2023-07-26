@@ -3,24 +3,15 @@
 
 
 namespace game {
-	
-    static state::State _state1;
-    static state::State _state2;
-    static state::State _state3;
 
+    static state::State _gameState;
 
     void init() {
-        // Setup States
-        state1::setup(&_state1);
-        state2::setup(&_state2);
-        state3::setup(&_state3);
+        game_state::setup(&_gameState);
 
-        state::addState("state1", &_state1);
-        state::addState("state2", &_state2);
-        state::addState("state3", &_state3);
-
-        state::initialState("state1");
-
+        state::addState("game-state", &_gameState);
+        state::initialState("game-state");
+        
         state::init();
     }
 
