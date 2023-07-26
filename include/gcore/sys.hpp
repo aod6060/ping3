@@ -26,13 +26,12 @@
 
 #include <json/json.h>
 
+#include "imgui.h"
+#include "imgui_impl_sdl2.h"
+#include "imgui_impl_opengl3.h"
+
 namespace app {
     struct Config {
-        /*
-            std::string caption;
-            uint32_t width;
-            uint32_t height;
-        */
         std::function<void()> initCB;
         std::function<void(SDL_Event*)> handleEventCB;
         std::function<void(float)> updateCB;
@@ -439,6 +438,26 @@ namespace render {
     void setModel(const glm::mat4& m);
 
     void render();
+}
+
+namespace state {
+    struct State {
+        std::function<void()> initCB;
+        std::function<void(SDL_Event*)> handleEventCB;
+        std::function<void(float)> updateCB;
+        std::function<void()> renderCB;
+        std::function<void()> releaseCB;
+    };
+
+    void addState(std::string name, State* state);
+    void changeState(std::string name);
+    void initialState(std::string name);
+
+    void init();
+    void handleEvent(SDL_Event* e);
+    void update(float delta);
+    void render();
+    void release();
 }
 
 namespace config {
