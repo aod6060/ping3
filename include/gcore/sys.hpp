@@ -12,6 +12,8 @@
 #include <algorithm>
 #include <random>
 #include <filesystem>
+#include <chrono>
+
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -500,6 +502,12 @@ namespace util {
 
     void loadStream(std::string path, std::function<void(std::ifstream& in)> cb);
     void writeStream(std::string path, std::function<void(std::ofstream& out)> cb);
+
+
+    void generateRandomSeed();
+    uint32_t getRandom();
+    uint32_t getRandom(int max);
+    uint32_t getRandom(int min, int max);
 }
 
 #endif

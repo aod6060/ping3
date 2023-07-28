@@ -29,4 +29,21 @@ namespace util {
         }
     }
 
+    static std::mt19937 _rand;
+    void generateRandomSeed() {
+        _rand = std::mt19937(std::chrono::steady_clock::now().time_since_epoch().count());
+    }
+
+    uint32_t getRandom() {
+        return _rand();
+    }
+
+    uint32_t getRandom(int max) {
+        return getRandom() % max;
+    }
+
+    uint32_t getRandom(int min, int max) {
+        return (getRandom() % (max - min)) + min;
+    }
+
 }

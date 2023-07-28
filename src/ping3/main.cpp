@@ -2,6 +2,8 @@
 
 
 int main(int argc, char** argv) {
+    util::generateRandomSeed();
+    
     app::Config config;
 
     game::setup(&config);

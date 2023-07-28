@@ -22,7 +22,7 @@ namespace collision {
     }
 
     float box_bottom_lt(Box& b) {
-        return b.size.y;
+        return b.position.y +  b.size.y;
     }
     
     bool box_collision_lt(Box& a, Box& b) {

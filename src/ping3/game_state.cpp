@@ -7,9 +7,17 @@ namespace game {
         static Paddle player1;
         static Paddle player2;
 
+        static std::vector<Ball> balls;
+
         void init() {
-            paddle_init_player1(&player1, PaddleType::PT_CONTROLLED);
-            paddle_init_player2(&player2, PaddleType::PT_CONTROLLED);
+            paddle_init_player1(&player1, PaddleType::PT_EXPERT);
+            paddle_init_player2(&player2, PaddleType::PT_EXPERT);
+
+            balls.resize(8);
+
+            for(int i = 0; i < balls.size(); i++) {
+                ball_init(&balls[i]);
+            }
         }
 
         void handleEvent(SDL_Event* e) {
@@ -21,8 +29,18 @@ namespace game {
                 app::exit();
             }
 
-            paddle_update(&player1, delta);
-            paddle_update(&player2, delta);
+
+            Ball* ball = nullptr;
+
+            paddle_ball_player1(&ball, &player1, balls);
+            paddle_update(&player1, ball, delta);
+            
+            paddle_ball_player2(&ball, &player2, balls);
+            paddle_update(&player2, ball, delta);
+
+            for(int i = 0; i < balls.size(); i++) {
+                ball_update(&balls[i], &player1, &player2, delta);
+            }
         }
 
         void render() {
@@ -36,11 +54,15 @@ namespace game {
             paddle_render(&player1);
             paddle_render(&player2);
             
+            for(int i = 0; i < balls.size(); i++) {
+                ball_render(&balls[i]);
+            }
+
             render::endFrame();
         }
 
         void release() {
-
+            balls.clear();
         }
 
         void setup(state::State* state) {
