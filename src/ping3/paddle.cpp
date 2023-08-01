@@ -3,6 +3,23 @@
 
 namespace game {
     namespace game_state {
+	
+	std::map<PaddleType, std::function<void(Paddle*, Ball*, float)>> paddleTypePlayer1 = {
+		{PaddleType::PT_EASY, paddle_update_player1_easy},
+		{PaddleType::PT_NORMAL, paddle_update_player1_normal},
+		{PaddleType::PT_HARD, paddle_update_player1_hard},
+		{PaddleType::PT_EXPERT, paddle_update_player1_expert},
+		{PaddleType::PT_CONTROLLED, paddle_update_player1_controlled}
+	};
+
+	std::map<PaddleType, std::function<void(Paddle*, Ball*, float)>> paddleTypePlayer2 = {
+		{PaddleType::PT_EASY, paddle_update_player2_easy},
+		{PaddleType::PT_NORMAL, paddle_update_player2_normal},
+		{PaddleType::PT_HARD, paddle_update_player2_hard},
+		{PaddleType::PT_EXPERT, paddle_update_player2_expert},
+		{PaddleType::PT_CONTROLLED, paddle_update_player2_controlled}
+	};
+
         void paddle_init_player1(Paddle* paddle, PaddleType type) {
             paddle->position.x = 8.0f;
             paddle->size.x = 8.0f;
@@ -10,11 +27,7 @@ namespace game {
             paddle->position.y = app::getHeight() / 2.0f - paddle->size.y / 2.0f;
             paddle->yvel = 0.0f;
 	    paddle->speed = 256.0f;
-            paddle->updateCB = paddle_update_player1_controlled;
-
-            if(type == PaddleType::PT_EXPERT) {
-                paddle->updateCB = paddle_update_player1_expert;
-            }
+            paddle->updateCB = paddleTypePlayer1[type];
         }
 
         void paddle_init_player2(Paddle* paddle, PaddleType type) {
@@ -24,11 +37,7 @@ namespace game {
             paddle->position.y = app::getHeight() / 2.0f - paddle->size.y / 2.0f;
             paddle->yvel = 0.0f;
 	    paddle->speed = 256.0f;
-            paddle->updateCB = paddle_update_player2_controlled;
-
-            if(type == PaddleType::PT_EXPERT) {
-                paddle->updateCB = paddle_update_player2_expert;
-            }
+            paddle->updateCB = paddleTypePlayer2[type];
         }
 
         void paddle_update(Paddle* paddle, Ball* ball, float delta) {
@@ -76,7 +85,25 @@ namespace game {
             paddle->position.y += paddle->yvel * paddle->speed * delta;
         }
 
-        // Player 2
+	void paddle_update_player1_hard(Paddle* paddle, Ball* ball, float delta) {
+		if(app::getWidth() * 0.75 >= ball->position.x) {
+			paddle_update_player1_expert(paddle, ball, delta);
+		}
+	}
+
+	void paddle_update_player1_normal(Paddle* paddle, Ball* ball, float delta) {
+		if(app::getWidth() * 0.5 >= ball->position.x) {
+			paddle_update_player1_expert(paddle, ball, delta);
+		}
+	}
+
+       	void paddle_update_player1_easy(Paddle* paddle, Ball* ball, float delta) {
+		if(app::getWidth() * 0.25 >= ball->position.x) {
+			paddle_update_player1_expert(paddle, ball, delta);
+		}
+	}
+      
+      // Player 2
         void paddle_update_player2_controlled(Paddle* paddle, Ball* ball, float delta) {
             if(input::isInputMappingPress(config::getConfig()->input.inputMaps["player-2-up"])) {
                 if(paddle->position.y > 0.0f) {
@@ -96,7 +123,26 @@ namespace game {
 
             paddle->position.y += paddle->yvel * paddle->speed * delta;
         }
-        
+
+
+	void paddle_update_player2_hard(Paddle* paddle, Ball* ball, float delta) {
+		if(app::getWidth() * 0.25 <= ball->position.x) {
+			paddle_update_player1_expert(paddle, ball, delta);
+		}
+	}
+
+	void paddle_update_player2_normal(Paddle* paddle, Ball* ball, float delta) {
+		if(app::getWidth() * 0.5 <= ball->position.x) {
+			paddle_update_player1_expert(paddle, ball, delta);
+		}
+	}
+
+       	void paddle_update_player2_easy(Paddle* paddle, Ball* ball, float delta) {
+		if(app::getWidth() * 0.75 <= ball->position.x) {
+			paddle_update_player1_expert(paddle, ball, delta);
+		}
+	}
+
         void paddle_update_player2_expert(Paddle* paddle, Ball* ball, float delta) {
             if(ball->position.y + ball->size < paddle->position.y) {
                 if(paddle->position.y > 0.0) {

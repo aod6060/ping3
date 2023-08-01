@@ -25,6 +25,12 @@ namespace game {
             PT_MAX_SIZE
         };
 
+	enum BallType {
+		BT_NORMAL = 0,
+		BT_CRAZY,
+		BT_MAX_SIZE
+	};
+
         struct Ball;
 
         struct Paddle {
@@ -40,6 +46,10 @@ namespace game {
             float size;
             glm::vec2 vel;
             glm::vec2 speed;
+	    glm::vec2 ballTime;
+	    glm::vec2 ballSpeedTime;
+	    float ballTeleportTime;
+	    std::function<void(Ball*, Paddle*, Paddle*, float)> updateCB;
         };
 
         void init();
@@ -60,11 +70,17 @@ namespace game {
         // Player 1
         void paddle_update_player1_controlled(Paddle* paddle, Ball* ball, float delta);
         void paddle_update_player1_expert(Paddle* paddle, Ball* ball, float delta);
+	void paddle_update_player1_hard(Paddle* paddle, Ball* ball, float delta);
+	void paddle_update_player1_normal(Paddle* paddle, Ball* ball, float delta);
+	void paddle_update_player1_easy(Paddle* paddle, Ball* ball, float delta);
 
         // Player 2
         void paddle_update_player2_controlled(Paddle* paddle, Ball* ball, float delta);
         void paddle_update_player2_expert(Paddle* paddle, Ball* ball, float delta);
-
+	void paddle_update_player2_hard(Paddle* paddle, Ball* ball, float delta);
+	void paddle_update_player2_normal(Paddle* paddle, Ball* ball, float delta);
+	void paddle_update_player2_easy(Paddle* paddle, Ball* ball, float delta);
+	
         // Paddle Render
         void paddle_render(Paddle* paddle);
 
@@ -75,8 +91,12 @@ namespace game {
         collision::Box paddle_toBox(Paddle* paddle);
 
         // Ball Code
-        void ball_init(Ball* ball);
+        void ball_init(Ball* ball, BallType ballType);
         void ball_update(Ball* ball, Paddle* player1, Paddle* player2, float delta);
+
+	void ball_update_ai_normal(Ball* ball, Paddle* player1, Paddle* player2, float delta);
+	void ball_update_ai_crazy(Ball* ball, Paddle* player1, Paddle* player2, float delta);
+	
         void ball_render(Ball* ball);
 
         collision::Box ball_toBox(Ball* ball);

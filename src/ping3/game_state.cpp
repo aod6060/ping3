@@ -10,13 +10,13 @@ namespace game {
         static std::vector<Ball> balls;
 
         void init() {
-            paddle_init_player1(&player1, PaddleType::PT_EXPERT);
-            paddle_init_player2(&player2, PaddleType::PT_EXPERT);
+            paddle_init_player1(&player1, PaddleType::PT_EASY);
+            paddle_init_player2(&player2, PaddleType::PT_EASY);
 
             balls.resize(8);
 
             for(int i = 0; i < balls.size(); i++) {
-                ball_init(&balls[i]);
+                ball_init(&balls[i], BallType::BT_CRAZY);
             }
         }
 
@@ -41,7 +41,7 @@ namespace game {
             for(int i = 0; i < balls.size(); i++) {
                 ball_update(&balls[i], &player1, &player2, delta);
             }
-        }
+	} 
 
         void render() {
             render::clear(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
